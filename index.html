@@ -37,6 +37,8 @@
     <script>
 
     //Here's where the data we want to display comes from!
+
+    //Temperature Data for San Francisco - averages, average lows, average highs
     var sfTempData = {
       "2015" : { "low": 54, "high": 93, "avg": 60 },
       "2014" : { "low": 55, "high": 92, "avg": 62 },
@@ -56,29 +58,35 @@
       "2000" : { "low": 50, "high": 105, "avg": 57 }
     }
 
-    //This takes our data, and puts it in lists
-    var sfHighs = []
-    for (var year in sfTempData) {
-      sfHighs.push(sfTempData[year]["high"])
-    }
-
-    var sfLows = []
-    for (var year in sfTempData) {
-      sfLows.push(sfTempData[year]["low"])
-    }
-
-    var sfAverages = []
-    for (var year in sfTempData) {
-      sfAverages.push(sfTempData[year]["avg"])
+    //Temperature Data for Washington DC - averages, average lows, average highs
+    var dcTempData = {
+      "2000": { "avg": 57, "low": 47, "high": 68 },
+      "2001": { "avg": 58, "low": 48, "high": 70 },
+      "2002": { "avg": 59, "low": 49, "high": 70 },
+      "2003": { "avg": 56, "low": 47, "high": 67 },
+      "2004": { "avg": 58, "low": 49, "high": 68 },
+      "2005": { "avg": 58, "low": 48, "high": 69 },
+      "2006": { "avg": 59, "low": 49, "high": 70 },
+      "2007": { "avg": 59, "low": 49, "high": 70 },
+      "2008": { "avg": 59, "low": 50, "high": 70 },
+      "2009": { "avg": 57, "low": 48, "high": 68 },
+      "2010": { "avg": 59, "low": 51, "high": 68 },
+      "2011": { "avg": 58, "low": 53, "high": 64 },
+      "2012": { "avg": 59, "low": 55, "high": 65 },
+      "2013": { "avg": 57, "low": 52, "high": 62 },
+      "2014": { "avg": 58, "low": 51, "high": 65 },
+      "2015": { "avg": 59, "low": 53, "high": 66 }
     }
 
     //Now we're putting it together in a form our chart can understand, with labels and colors
     var data = {
-    labels: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
-    datasets: [makeDataset("San Francisco Highs", sfHighs), makeDataset("San Francisco Lows", sfLows), makeDataset("San Francisco Averages", sfAverages)]
+      labels: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
+      datasets: [
+        makeDataset("San Francisco Average Highs", getAverages("high", sfTempData)),
+        makeDataset("San Francisco Average Lows", getAverages("low", sfTempData)),
+        // makeDataset("San Francisco Average Temp", getAverages("avg", sfTempData))
+      ]
     };
-
-
 
     //Now we actually create the chart, and attach it to the page
     var myLineChart = Chart.Line($("#myChart"), {
@@ -87,8 +95,6 @@
       options: {
       }
     });
-
-
 
     //This function helps us make all the lines behave the same way
     function makeDataset (label, data) {
@@ -109,6 +115,16 @@
           data: data,
       }
     }
+
+    //This takes our data, and puts it in lists
+    function getAverages(key, data) {
+      var avgs = []
+      for (var year in data) {
+        avgs.push(data[year][key])
+      }
+      return avgs
+    }
+
 
     //A function that returns a random color
     function randomColor() {
