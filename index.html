@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <style>
+      body {
+        background-image: url();
+      }
+      h1 {
+        color:
+      }
+
+    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Becoming a Programmer</h1>
+      <canvas id="myChart" ></canvas>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script>
+
+
+    var ctx = $("#myChart");
+
+    var sfTempData = {
+      "2015" : { "low": 54, "high": 93, "avg": 60 },
+      "2014" : { "low": 55, "high": 92, "avg": 62 },
+      "2013" : { "low": 52, "high": 82, "avg": 56 },
+      "2012" : { "low": 52, "high": 90, "avg": 56 },
+      "2011" : { "low": 51, "high": 85, "avg": 55 },
+      "2010" : { "low": 52, "high": 94, "avg": 57 },
+      "2009" : { "low": 50, "high": 95, "avg": 57 },
+      "2008" : { "low": 49, "high": 96, "avg": 56 },
+      "2007" : { "low": 50, "high": 89, "avg": 56 },
+      "2006" : { "low": 50, "high": 97, "avg": 57 },
+      "2005" : { "low": 51, "high": 89, "avg": 58 },
+      "2004" : { "low": 51, "high": 94, "avg": 58 },
+      "2003" : { "low": 51, "high": 97, "avg": 58 },
+      "2002" : { "low": 50, "high": 94, "avg": 57 },
+      "2001" : { "low": 50, "high": 95, "avg": 57 },
+      "2000" : { "low": 50, "high": 105, "avg": 57 }
+    }
+
+
+
+
+
+    var programmerEmploymentData = {
+      "Overall" : {
+        "Total Programmers" : 1554960,
+        "Hourly mean wage" : 47.08,
+        "Annual mean wage" : 97930
+      },
+      "Hourly": {
+        "Hourly 10th percentile wage" : 25.04,
+        "Hourly 25th percentile wage" : 33.78,
+        "Hourly median wage" : 45.23,
+        "Hourly 75th percentile wage" : 58.50,
+        "Hourly 90th percentile wage" : 72.79,
+      },
+      "Annual" : {
+        "Annual 10th percentile wage" : 52090,
+        "Annual 25th percentile wage" : 70260,
+        "Annual median wage" : 94080,
+        "Annual 75th percentile wage" : 121670,
+        "Annual 90th percentile wage" : 151400
+      }
+    }
+
+
+    var data = {
+    labels: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
+    datasets: [makeDataset("San Francisco Highs", [])]
+    };
+
+
+    var myLineChart = Chart.Line(ctx, {
+      type: 'line',
+      data: data,
+      options: {
+      }
+    });
+
+    function makeDataset (label, data) {
+      return {
+          label: label,
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: data,
+      }
+    }
+    </script>
+  </body>
+</html>
